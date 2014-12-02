@@ -7,14 +7,14 @@ require('mn-gulp')(gulp, {
     ext: 'html js'
   },
   browserify: {
-    source: '../client/app-module.js',
+    source: '../client/index.js',
     dest: {
       filename: 'bundle.js',
       path: './dist'
     }
   },
   html: {
-    source: '../client/**/*.html',
+    source: '../client/index.html',
     dest: './dist/'
   }
 })

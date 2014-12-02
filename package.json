@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "mn-lol",
+  "version": "1.0.0",
+  "description": "mn-lol ====== Private session.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcusnielsen/mn-lol.git"
+  },
+  "author": "Marcus Nielsen <marcus.nielsen82@gmail.com> (http://github.com/marcusnielsen/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marcusnielsen/mn-lol/issues"
+  },
+  "homepage": "https://github.com/marcusnielsen/mn-lol"
+}

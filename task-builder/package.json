@@ -8,10 +8,6 @@
     "gulp": "^3.8.10",
     "mn-gulp": "^0.2.1"
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Marcus Nielsen <marcus.nielsen82@gmail.com> (http://github.com/marcusnielsen/)",
   "license": "ISC"
 }
