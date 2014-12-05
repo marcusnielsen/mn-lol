@@ -1,11 +1,11 @@
-var MnContainerModel = function (maxWidth, borderThickness, backgroundImageUrl, children) {
+var MnContainerModel = function (maxWidth, borderThickness, imageUrl, children) {
   if(!(this instanceof MnContainerModel)) {
-    return new MnContainerModel(maxWidth, borderThickness, backgroundImageUrl, children)
+    return new MnContainerModel(maxWidth, borderThickness, imageUrl, children)
   }
 
   this._maxWidth = maxWidth
   this._borderThickness = borderThickness
-  this._backgroundImageUrl = backgroundImageUrl
+  this._imageUrl = imageUrl
   this._children = children
 }
 
@@ -25,12 +25,12 @@ MnContainerModel.prototype.borderThickness = function (value) {
   this._borderThickness = value
 }
 
-MnContainerModel.prototype.backgroundImageUrl = function (value) {
+MnContainerModel.prototype.imageUrl = function (value) {
   if(!arguments.length) {
-    return this._backgroundImageUrl
+    return this._imageUrl
   }
 
-  this._backgroundImageUrl = value
+  this._imageUrl = value
 }
 
 MnContainerModel.prototype.children = function (value) {

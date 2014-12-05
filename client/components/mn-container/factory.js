@@ -1,7 +1,7 @@
-var MnContainerModel = require('./mn-container-model')
+var model = require('./model')
 
 var fn = function () {
-  return MnContainerModel
+  return model
 }
 
 module.exports = {
