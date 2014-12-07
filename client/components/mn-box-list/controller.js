@@ -44,7 +44,7 @@ var fn = function ($scope, localStorageService) {
   }
   else {
     for(var i = 0; i < savedData.length; i++) {
-      this.mnBoxListModel.addBox(savedData[i])
+      this.mnBoxListModel.addBox(this.mnBoxListModel.lastBoxIndex(), savedData[i])
     }
   }
 

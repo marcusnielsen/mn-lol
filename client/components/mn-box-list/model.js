@@ -16,9 +16,9 @@ MnBoxListModel.prototype.lastBoxIndex = function () {
 }
 
 MnBoxListModel.prototype.nextBoxId = function () {
-  var boxId = this.lastBoxIndex() >= 0 ? this.boxes()[this.lastBoxIndex()].id() + 1 : 0
-
-  return boxId
+  return _.max(this.boxes(), function (box) {
+    return box.id()
+  }).id() + 1
 }
 
 MnBoxListModel.prototype.boxes = function (value) {
@@ -49,9 +49,11 @@ MnBoxListModel.prototype.deletes = function (value) {
   this._deletes = value
 }
 
-MnBoxListModel.prototype.addBox = function (boxId) {
+MnBoxListModel.prototype.addBox = function (index, boxId) {
+  index = index || this.lastBoxIndex()
   var box = Box(boxId || this.nextBoxId(), this)
-  this.boxes().push(box)
+
+  this.boxes().splice(index + 1, 0, box)
 }
 
 MnBoxListModel.prototype.previousBoxById = function (boxId) {
