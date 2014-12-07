@@ -19,6 +19,26 @@ var fn = function () {
 
     return nextBox.id()
   }
+
+  this.boxType = function () {
+    var modVal = this.mnBoxModel.index() % 4
+
+    if(modVal === 2) {
+      return 'danger'
+    }
+    else if(modVal === 3) {
+      return 'success'
+    }
+    else if(modVal === 0) {
+      return 'info'
+    }
+
+    return 'default'
+  }
+
+  this.isLastIndex = function () {
+    return this.mnBoxModel.index() === this.mnBoxModel.parent().lastBoxIndex() ? true : false
+  }
 }
 
 module.exports = {

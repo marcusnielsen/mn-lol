@@ -67,4 +67,10 @@ MnBoxListModel.prototype.nextBoxById = function (boxId) {
   return this.boxes()[boxIndex + 1]
 }
 
+MnBoxListModel.prototype.boxIndexById = function (boxId) {
+  return _.findIndex(this.boxes(), function (box) {
+    return box.id() === boxId
+  })
+}
+
 module.exports = MnBoxListModel

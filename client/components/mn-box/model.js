@@ -39,6 +39,14 @@ MnBoxModel.prototype.nextBox = function () {
   return this.parent().nextBoxById(this.id())
 }
 
+MnBoxModel.prototype.index = function () {
+  if(arguments.length) {
+    throw new Error('MnBoxModel#index has no setter.')
+  }
+
+  return this.parent().boxIndexById(this.id())
+}
+
 MnBoxModel.prototype.delete = function () {
   this.parent().deleteBoxById(this.id())
 }

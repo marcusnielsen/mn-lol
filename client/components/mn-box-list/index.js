@@ -1,6 +1,6 @@
 var fs = require('fs')
 
-var name = 'mnBoxList'
+var moduleName = 'mnBoxList'
 var template = fs.readFileSync(__dirname + '/template.html')
 var factory = require('./factory')
 var controller = require('./controller')
@@ -16,7 +16,7 @@ var directiveFn = function () {
   }
 }
 
-module.exports = angular.module(name, [])
+module.exports = angular.module(moduleName, [])
   .factory(factory.name, factory.fn)
   .controller(controller.name, controller.fn)
-  .directive(name, directiveFn)
+  .directive(moduleName, directiveFn)

@@ -14,9 +14,9 @@ var fn = function (mnBoxListFactory) {
   }
 
   var getColorValueByItemsCount = function (itemLength) {
-    var colorValue = 128 + itemLength
+    var colorValue = 128 - itemLength
 
-    colorValue = colorValue <= 255 ? colorValue : 255
+    colorValue = colorValue >= 0 ? colorValue : 0
 
     return colorValue
   }
