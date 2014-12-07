@@ -16,6 +16,10 @@ MnBoxListModel.prototype.lastBoxIndex = function () {
 }
 
 MnBoxListModel.prototype.nextBoxId = function () {
+  if(!this.boxes().length) {
+    return 1
+  }
+
   return _.max(this.boxes(), function (box) {
     return box.id()
   }).id() + 1
