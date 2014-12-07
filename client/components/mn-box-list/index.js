@@ -1,8 +1,6 @@
 var fs = require('fs')
-// TODO: Google up info about what makes path work with brfs (fs.readFileSync).
-// var path = require('path')
 
-var name = 'mnContainer'
+var name = 'mnBoxList'
 var template = fs.readFileSync(__dirname + '/template.html')
 var factory = require('./factory')
 var controller = require('./controller')
@@ -14,11 +12,7 @@ var directiveFn = function () {
     controllerAs: 'vm',
     bindToController: true,
     template: template,
-    transclude: true,
-    scope: {
-      maxWidth: '=',
-      imageUrl: '='
-    }
+    scope: {}
   }
 }
 

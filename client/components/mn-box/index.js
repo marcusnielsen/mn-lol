@@ -12,9 +12,8 @@ var directiveFn = function () {
     controllerAs: 'vm',
     bindToController: true,
     template: template,
-    transclude: true,
     scope: {
-
+      mnBoxModel: '='
     }
   }
 }

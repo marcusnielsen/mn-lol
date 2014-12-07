@@ -5,6 +5,6 @@ var fn = function () {
 }
 
 module.exports = {
-  name: 'mnContainerFactory',
+  name: 'mnBoxListFactory',
   fn: fn
 }

@@ -19,6 +19,7 @@
     "connect-livereload": "^0.5.2",
     "express": "^4.10.4",
     "gulp": "^3.8.10",
+    "lodash": "^2.4.1",
     "mn-gulp": "^0.2.1"
   }
 }
