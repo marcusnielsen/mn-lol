@@ -1,6 +1,29 @@
-<div ng-style="vm.getStyle()" class="mn-box-list">
+<div class="row">
+  <div class="col-xs-12">
+    <div class="well well-sm">
+      <div class="row">
+        <div class="col-xs-6 text-right">
+          Boxes:
+        </div>
+        <div class="col-xs-6">
+          <span ng-bind="vm.mnBoxListModel.boxes().length"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 text-right">
+          Deletes:
+        </div>
+        <div class="col-xs-6">
+          <span ng-bind="vm.mnBoxListModel.deletes()"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-style="vm.getStyle()" class="mn-box-list" ng-class="{selected: vm.mnBoxListModel.selected()}">
   <div class="row">
-    <div ng-repeat="box in vm.boxList.boxes()" class="col-xs-{{vm.getColumnWidthByIndex($index)}}">
+    <div ng-repeat="box in vm.mnBoxListModel.boxes()" class="col-xs-{{vm.getColumnWidthByIndex($index)}}">
       <mn-box mn-box-model="box"></mn-box>
     </div>
   </div>

@@ -1,8 +1,9 @@
 <div class="mn-box">
-  <div ng-click="vm.mnBoxModel.parent().addBox()" class="panel panel-{{vm.boxType()}}" ng-class="{active: vm.isLastIndex()}">
+  <div ng-click="vm.mnBoxModel.parent().addBox()" class="panel panel-{{vm.boxType()}}" ng-class="{last: vm.isLastIndex(), selected: vm.mnBoxModel.selected()}" ng-mouseenter="vm.mnBoxModel.selected(true)" ng-mouseleave="vm.mnBoxModel.selected(false)">
     <div class="panel-heading clearfix">
       <div class="pull-right">
-        <button ng-click="vm.mnBoxModel.delete()" class="btn btn-xs btn-warning">&times;</button>
+        <!--TODO: Don't let the click event propagate or a new box is created.-->
+        <button ng-click="vm.deleteBox($event)" class="btn btn-xs btn-warning">&times;</button>
       </div>
       <h3 ng-bind="vm.mnBoxModel.id()" class="panel-title"></h3>
     </div>

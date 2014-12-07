@@ -1,4 +1,4 @@
-var fn = function (mnBoxListFactory) {
+var fn = function ($scope, localStorageService) {
   var getColumnWidthByIndex = function (boxIndex) {
     var modVal = boxIndex % 6
 
@@ -23,7 +23,7 @@ var fn = function (mnBoxListFactory) {
 
   var styleObj = {}
   var getStyle = function () {
-    var length = this.boxList.boxes().length
+    var length = this.mnBoxListModel.boxes().length
 
     styleObj.backgroundColor = 'rgb(' +
       getColorValueByItemsCount(length) + ',' +
@@ -34,13 +34,41 @@ var fn = function (mnBoxListFactory) {
     return styleObj
   }
 
-  this.boxList = mnBoxListFactory()
-  this.boxList.addBox()
   this.getStyle = getStyle
   this.getColumnWidthByIndex = getColumnWidthByIndex
+
+  var savedData = localStorageService.get('boxes')
+
+  if(!savedData) {
+    this.mnBoxListModel.addBox()
+  }
+  else {
+    for(var i = 0; i < savedData.length; i++) {
+      this.mnBoxListModel.addBox(savedData[i])
+    }
+  }
+
+  // TODO: Refactor into binding ´this´.
+  var that = this
+
+  $scope.$watchCollection(
+    function watchCompare() {
+      return that.mnBoxListModel.boxes()
+    },
+    function watchFn(newVal, oldVal) {
+      if(newVal !== oldVal) {
+        var ids = []
+
+        for(var i = 0; i < that.mnBoxListModel.boxes().length; i++) {
+          ids.push(that.mnBoxListModel.boxes()[i].id())
+        }
+
+        localStorageService.set('boxes', ids)
+      }
+    })
 }
 
 module.exports = {
-  name: 'mnContainerController',
+  name: 'mnBoxListController',
   fn: fn
 }

@@ -8,6 +8,7 @@ var MnBoxListModel = function () {
   }
 
   this._boxes = []
+  this._deletes = 0
 }
 
 MnBoxListModel.prototype.lastBoxIndex = function () {
@@ -20,12 +21,12 @@ MnBoxListModel.prototype.nextBoxId = function () {
   return boxId
 }
 
-MnBoxListModel.prototype.boxes = function () {
-  if(arguments.length) {
-    throw new Error('MnBoxListModel#boxes() has no setter.')
+MnBoxListModel.prototype.boxes = function (value) {
+  if(!arguments.length) {
+    return this._boxes
   }
 
-  return this._boxes
+  this._boxes = value
 }
 
 MnBoxListModel.prototype.deleteBoxById = function (boxId) {
@@ -36,10 +37,20 @@ MnBoxListModel.prototype.deleteBoxById = function (boxId) {
   _.remove(this.boxes(), function remove(box) {
     return box.id() === boxId
   })
+
+  this.deletes(this.deletes() + 1)
 }
 
-MnBoxListModel.prototype.addBox = function () {
-  var box = Box(this.nextBoxId(), this)
+MnBoxListModel.prototype.deletes = function (value) {
+  if(!arguments.length) {
+    return this._deletes
+  }
+
+  this._deletes = value
+}
+
+MnBoxListModel.prototype.addBox = function (boxId) {
+  var box = Box(boxId || this.nextBoxId(), this)
   this.boxes().push(box)
 }
 
@@ -70,6 +81,17 @@ MnBoxListModel.prototype.nextBoxById = function (boxId) {
 MnBoxListModel.prototype.boxIndexById = function (boxId) {
   return _.findIndex(this.boxes(), function (box) {
     return box.id() === boxId
+  })
+}
+
+MnBoxListModel.prototype.selected = function () {
+  if(arguments.length) {
+    throw new Error('MnBoxListModel#selected has no setter.')
+  }
+
+  // TODO: Refactor to something more performant.
+  return _.any(this.boxes(), function (box) {
+    return box.selected()
   })
 }
 

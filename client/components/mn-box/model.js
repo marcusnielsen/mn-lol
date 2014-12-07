@@ -5,6 +5,7 @@ var MnBoxModel = function (id, parent) {
 
   this._id = id
   this._parent = parent
+  this._selected = false
 }
 
 MnBoxModel.prototype.id = function () {
@@ -21,6 +22,14 @@ MnBoxModel.prototype.parent = function () {
   }
 
   return this._parent
+}
+
+MnBoxModel.prototype.selected = function (value) {
+  if(!arguments.length) {
+    return this._selected
+  }
+
+  this._selected = value
 }
 
 MnBoxModel.prototype.previousBox = function () {

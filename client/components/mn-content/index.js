@@ -1,6 +1,6 @@
 var fs = require('fs')
 
-var moduleName = 'mnBoxList'
+var moduleName = 'mnContent'
 var template = fs.readFileSync(__dirname + '/template.html')
 var controller = require('./controller')
 
@@ -11,9 +11,7 @@ var directiveFn = function () {
     controllerAs: 'vm',
     bindToController: true,
     template: template,
-    scope: {
-      mnBoxListModel: '='
-    }
+    scope: {}
   }
 }
 

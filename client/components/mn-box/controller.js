@@ -39,6 +39,21 @@ var fn = function () {
   this.isLastIndex = function () {
     return this.mnBoxModel.index() === this.mnBoxModel.parent().lastBoxIndex() ? true : false
   }
+
+  this.deleteBox = function (event) {
+    if(event) {
+      event.stopPropagation()
+      event.preventDefault()
+    }
+
+    try {
+      this.mnBoxModel.delete()
+    }
+    catch(e) {
+      // TODO: Refactor
+      alert(e)
+    }
+  }
 }
 
 module.exports = {
