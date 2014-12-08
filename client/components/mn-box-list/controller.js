@@ -34,38 +34,41 @@ var fn = function ($scope, localStorageService) {
     return styleObj
   }
 
+  (function init() {
+    var savedData = localStorageService.get('boxes')
+
+    if(!savedData) {
+      this.mnBoxListModel.addBox()
+    }
+    else {
+      for(var i = 0; i < savedData.length; i++) {
+        this.mnBoxListModel.addBox(this.mnBoxListModel.lastBoxIndex(), savedData[i])
+      }
+    }
+
+    // TODO: Refactor into binding ´this´.
+    var that = this
+
+    $scope.$watchCollection(
+      function watchCompare() {
+        return that.mnBoxListModel.boxes()
+      },
+      function watchFn(newVal, oldVal) {
+        if(newVal !== oldVal) {
+          var ids = []
+
+          for(var i = 0; i < that.mnBoxListModel.boxes().length; i++) {
+            ids.push(that.mnBoxListModel.boxes()[i].id())
+          }
+
+          localStorageService.set('boxes', ids)
+        }
+      })
+  }())
+
   this.getStyle = getStyle
   this.getColumnWidthByIndex = getColumnWidthByIndex
 
-  var savedData = localStorageService.get('boxes')
-
-  if(!savedData) {
-    this.mnBoxListModel.addBox()
-  }
-  else {
-    for(var i = 0; i < savedData.length; i++) {
-      this.mnBoxListModel.addBox(this.mnBoxListModel.lastBoxIndex(), savedData[i])
-    }
-  }
-
-  // TODO: Refactor into binding ´this´.
-  var that = this
-
-  $scope.$watchCollection(
-    function watchCompare() {
-      return that.mnBoxListModel.boxes()
-    },
-    function watchFn(newVal, oldVal) {
-      if(newVal !== oldVal) {
-        var ids = []
-
-        for(var i = 0; i < that.mnBoxListModel.boxes().length; i++) {
-          ids.push(that.mnBoxListModel.boxes()[i].id())
-        }
-
-        localStorageService.set('boxes', ids)
-      }
-    })
 }
 
 module.exports = {

@@ -1,6 +1,6 @@
 var fn = function () {
   // TODO: Refactor previous and next.
-  this.previousBoxId = function () {
+  var previousBoxId = function () {
     var previousBox = this.mnBoxModel.previousBox()
 
     if(!previousBox) {
@@ -10,7 +10,7 @@ var fn = function () {
     return previousBox.id()
   }
 
-  this.nextBoxId = function () {
+  var nextBoxId = function () {
     var nextBox = this.mnBoxModel.nextBox()
 
     if(!nextBox) {
@@ -20,7 +20,7 @@ var fn = function () {
     return nextBox.id()
   }
 
-  this.boxType = function () {
+  var boxType = function () {
     var modVal = this.mnBoxModel.index() % 4
 
     if(modVal === 2) {
@@ -36,11 +36,11 @@ var fn = function () {
     return 'default'
   }
 
-  this.isLastIndex = function () {
+  var isLastIndex = function () {
     return this.mnBoxModel.index() === this.mnBoxModel.parent().lastBoxIndex() ? true : false
   }
 
-  this.deleteBox = function (event) {
+  var deleteBox = function (event) {
     if(event) {
       event.stopPropagation()
       event.preventDefault()
@@ -54,6 +54,12 @@ var fn = function () {
       alert(e)
     }
   }
+
+  this.previousBoxId = previousBoxId
+  this.nextBoxId = nextBoxId
+  this.boxType = boxType
+  this.isLastIndex = isLastIndex
+  this.deleteBox = deleteBox
 }
 
 module.exports = {
