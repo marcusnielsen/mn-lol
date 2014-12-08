@@ -9,8 +9,12 @@
     </div>
     <div class="panel-body">
       <div class="row">
-        <div ng-bind="vm.previousBoxId()" class="col-xs-6"></div>
-        <div ng-bind="vm.nextBoxId()" class="col-xs-6"></div>
+        <div  class="col-xs-6">
+          <span ng-bind="vm.previousBoxId()"></span>
+        </div>
+        <div class="col-xs-6 text-right">
+          <span ng-bind="vm.nextBoxId()"></span>
+        </div>
       </div>
     </div>
   </div>
